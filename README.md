@@ -3,8 +3,11 @@ to use the input data from a text file, and then output that data onto another t
 
 example:
     XVI || 14
+    
     XXX || 30
+    
     IIVV || 12
+    
     and so on.
 
 To utilize this solution, I used a main file to interact with the inputs from the command line, and give
