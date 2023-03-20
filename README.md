@@ -2,6 +2,7 @@ after reading the prompt for the assignment, I decided that the easiest way to i
 to use the input data from a text file, and then output that data onto another text file matching the format shown
 
 example:
+
     XVI || 14
     
     XXX || 30
