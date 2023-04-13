@@ -15,13 +15,11 @@ using namespace std;
 class Convert {
 public:
 
-    Convert(char *string, char *string1) {
-        if (fileExists(string)) {
-            if (fileExists(string1)) {
-                this->iFileName = string;
-                this->oFileName = string1;
-                this->iFileNameS = string;
-                this->oFileNameS = string;
+    Convert(char *inputFileName, char *outputFileName) {
+        if (fileExists(inputFileName)) {
+            if (fileExists(outputFileName)) {
+                this->iFileName = inputFileName;
+                this->oFileName = outputFileName;
             } else {
                 throw invalid_argument("output file doesn't exist or was not found");
             }
@@ -30,13 +28,9 @@ public:
         }
     };
 
-    Convert(char *string) {
-        if (fileExists(string)) {
-            this->iFileName = string;
-            this->oFileName = string;
-            this->oFileNameS = string;
-            this->oFileNameS = this->oFileNameS + string;
-            this->iFileNameS = string;
+    Convert(char *inputFileName) {
+        if (fileExists(inputFileName)) {
+            this->iFileName = inputFileName;
         } else {
             throw invalid_argument("output file doesn't exist or was not found");
         }
@@ -126,7 +120,7 @@ private:
     }
 
     void finish(int total, int error) {
-        ofstream SetFile(oFileNameS);
+        ofstream SetFile(oFileName);
         if (error == 0) {
             SetFile << originalRomanNums.front() << " || " << total << endl;
         } else {
@@ -134,10 +128,8 @@ private:
         }
     }
 
-    char *iFileName;
-    char *oFileName;
-    string iFileNameS;
-    string oFileNameS;
+    string iFileName;
+    string oFileName;
     queue<char> romanNumerals;
     queue<int> convertedValues;
     queue<string> originalRomanNums;
