@@ -66,13 +66,13 @@ private:
         int total = 0;
         int error = 0;
         fill = "/";
-        map["I"] = 1;
-        map["V"] = 5;
-        map["X"] = 10;
-        map["L"] = 50;
-        map["C"] = 100;
-        map["D"] = 500;
-        map["M"] = 1000;
+        RomanToArabic["I"] = 1;
+        RomanToArabic["V"] = 5;
+        RomanToArabic["X"] = 10;
+        RomanToArabic["L"] = 50;
+        RomanToArabic["C"] = 100;
+        RomanToArabic["D"] = 500;
+        RomanToArabic["M"] = 1000;
         if (not romanNumerals.empty()) {
             romanNum1 = romanNumerals.front();
             romanNumerals.pop();
@@ -85,13 +85,13 @@ private:
                     convertedValues.push(0);
                     romanNum1 = romanNum2;
                 } else if (romanNum2 == fill) {
-                    total += map[romanNum1];
+                    total += RomanToArabic[romanNum1];
                     romanNum2 = romanNumerals.front();
                     romanNumerals.pop();
                     romanNum1 = romanNum2;
                     break;
-                } else if (map[romanNum1] < map[romanNum2]) {
-                    int temp = map[romanNum2] - map[romanNum1];
+                } else if (RomanToArabic[romanNum1] < RomanToArabic[romanNum2]) {
+                    int temp = RomanToArabic[romanNum2] - RomanToArabic[romanNum1];
                     if (temp == 4 || temp == 5 || temp == 40 || temp == 50 || temp == 400 || temp == 500) {
                         total += temp;
                         romanNum2 = romanNumerals.front();
@@ -107,7 +107,7 @@ private:
                         error = -1;
                     }
                 } else {
-                    total += map[romanNum1];
+                    total += RomanToArabic[romanNum1];
                     romanNum1 = romanNum2;
                 }
             }
@@ -115,7 +115,7 @@ private:
             total = 0;
             error = 0;
         }
-        total += map[romanNum1];
+        total += RomanToArabic[romanNum1];
         finish(total, error);
     }
 
@@ -133,7 +133,7 @@ private:
     queue<char> romanNumerals;
     queue<int> convertedValues;
     queue<string> originalRomanNums;
-    map<string, int> map;
+    map<string, int> RomanToArabic;
 };
 
 #endif //CODING_CHALLENGE_CONVERT_H
